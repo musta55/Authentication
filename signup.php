@@ -14,11 +14,19 @@ if (isset($_POST['submit'])) {
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
     $exists = false;
+    //Check whether this user exists
    $existSql ="SELECT * FROM `usernew` WHERE username='$username'";
-
-    if (($password == $cpassword) && $exists == false) {
-
-
+   $result = mysqli_query($conn, $existSql);
+   $numExistRows= mysqli_num_rows($result);
+   if($numExistRows>0){
+       $exists =true;
+   }
+   else {
+       $exists=false;
+   }
+   if($exists == false)
+   {
+    if (($password == $cpassword) ) {
         $sql = "INSERT INTO `usernew` (`username`, `password`, `dt`) VALUES ('$username', '$password', current_timestamp())";
         //   Problem,,result true i hcche na
         $result = mysqli_query($conn, $sql);
@@ -26,12 +34,14 @@ if (isset($_POST['submit'])) {
            
             $showAlert = true;
         } else {
-           
             die(mysqli_error($conn));
         }
     } else {
-
-        $showError = "Password did not matched";
+        $showError = "Password did not match";
+            }
+    }
+    else {
+        $showError = "Username already exists";
     }
 }
 ob_end_flush();
@@ -76,11 +86,11 @@ ob_end_flush();
         <form method="post">
             <div class="mb-6 col-md-6">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
+                <input type="text"  maxlength ="11" class="form-control" id="username" name="username" aria-describedby="emailHelp">
             </div>
             <div class="mb-6 col-md-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password"   maxlength ="22"class="form-control" id="password" name="password">
             </div>
 
             <div class="mb-6 col-md-6">
