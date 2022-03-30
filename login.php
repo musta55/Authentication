@@ -70,7 +70,7 @@ ob_end_flush();
 
         <h1 class="text-center" class="my-4">Log in to our website</h1>
 
-        <form action="/authentication/login.php" method="post">
+        <form action="/authentication/login.php" method="post" style="padding-top:15px; padding-left:30%">
       <!-- <form method="post"> -->
             <div class="mb-6 col-md-6">
                 <label for="username" class="form-label">Username</label>

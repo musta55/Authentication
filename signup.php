@@ -83,7 +83,7 @@ ob_end_flush();
         <h1 class="text-center" class="my-4">Sign up to our website</h1>
 
         <!-- <form action="/authentication/signup.php" method="post"> -->
-        <form method="post">
+        <form method="post" style="padding-top:15px; padding-left:30%">
             <div class="mb-6 col-md-6">
                 <label for="username" class="form-label">Username</label>
                 <input type="text"  maxlength ="11" class="form-control" id="username" name="username" aria-describedby="emailHelp">
